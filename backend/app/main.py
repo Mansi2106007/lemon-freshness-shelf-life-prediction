@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.api.routes import router
-from app.core.database import engine, Base
+from app.database import Base, engine
 from app.models.prediction_model import PredictionRecord
 
 # Create database tables
@@ -16,4 +16,6 @@ app.include_router(router)
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Lemon Freshness API. Go to /docs for Swagger UI."}
+    return {
+        "message": "Welcome to the Lemon Freshness API. Go to /docs for Swagger UI."
+    }
