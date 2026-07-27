@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rind Report — lime crop diagnosis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">RR</span>
+      <span class="brand-name">RIND&nbsp;REPORT</span>
+    </div>
+    <span class="eyebrow">field diagnosis tool</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Photograph the fruit.<br>Get a grading slip.</h1>
+      <p class="lede">
+        Point a camera at a lime and Rind Report reads what's marking the peel —
+        sunburn, scarring, pests, chilling, or rot — and tells you what to do
+        about it before the next harvest.
+      </p>
+
+      <form id="upload-form">
+        <label id="dropzone" for="file-input">
+          <div id="dropzone-empty" class="dz-state">
+            <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="13" r="4"></circle>
+              <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1-1.6A1 1 0 0 1 9.5 5h5a1 1 0 0 1 .8.4l1 1.6h2.2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z"></path>
+            </svg>
+            <p>Drop a photo here, or tap to choose one</p>
+          </div>
+          <div id="dropzone-preview" class="dz-state" hidden>
+            <img id="preview-img" alt="Selected lime photo preview">
+          </div>
+        </label>
+        <input type="file" id="file-input" name="image" accept="image/png, image/jpeg, image/webp" hidden>
+
+        <div class="actions">
+          <button type="submit" id="submit-btn" class="btn btn-primary" disabled>Read the peel</button>
+          <button type="button" id="clear-btn" class="btn btn-ghost" hidden>Choose a different photo</button>
+        </div>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="how" aria-label="How it works">
+      <ol class="steps">
+        <li><span class="step-no">01</span><span class="step-label">Snap the fruit</span><span class="step-detail">One clear, well-lit photo of the peel is enough.</span></li>
+        <li><span class="step-no">02</span><span class="step-label">We read the peel</span><span class="step-detail">The trained model checks it against known damage patterns.</span></li>
+        <li><span class="step-no">03</span><span class="step-label">Get field advice</span><span class="step-detail">A plain-language cause and what to change, today.</span></li>
+      </ol>
+    </section>
+
+    <section id="result" class="result" hidden aria-live="polite">
+      <div class="gradient-track">
+        <span class="gradient-tick" data-tick="healthy"></span>
+        <span class="gradient-tick" data-tick="turning"></span>
+        <span class="gradient-tick" data-tick="damaged"></span>
+        <div id="gradient-marker" class="gradient-marker"></div>
+      </div>
+
+      <div class="stamp-card">
+        <div id="stamp" class="stamp">
+          <span id="stamp-label" class="stamp-label">SCARS</span>
+          <span id="stamp-stage" class="stamp-stage">pre-harvest</span>
+        </div>
+
+        <div class="stamp-body">
+          <p class="confidence"><span id="confidence-value">—</span> confidence</p>
+          <p id="cause-text" class="cause"></p>
+
+          <p class="actions-heading">What to do</p>
+          <ul id="actions-list" class="actions-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Diagnosis reasoning is grounded in Botina A. et al. (2019), <em>Pre- and post-harvest factors that
+      affect the quality and commercialization of the Tahiti lime</em>, Scientia Horticulturae 257.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
