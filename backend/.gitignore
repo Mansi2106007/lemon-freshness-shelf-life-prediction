@@ -1,6 +1,14 @@
 .venv/
+venv/
+ai_env/
+
 __pycache__/
 *.pyc
+
 predictions.db
 .env
 uploads/
+
+backend/ml_models/*.keras
+backend/ml_models/*.h5
+backend/ml_models/saved_model/
