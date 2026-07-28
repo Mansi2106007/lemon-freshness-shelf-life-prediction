@@ -30,7 +30,7 @@ class PredictionService:
         prediction_data = {
             "prediction": "Fresh",
             "confidence": 98.5,
-            "estimated_shelf_life": "12 days",
+            "estimated_shelf_life": "20 days",
             "status": "Mock Prediction"
         }
 
