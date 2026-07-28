@@ -1,13 +1,15 @@
-import os
 from pathlib import Path
 
-# Base directory of the backend
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Uploads directory
 UPLOAD_DIR = BASE_DIR / "app" / "uploads"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-# Models directory
 MODEL_DIR = BASE_DIR / "ml_models"
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
+IMG_SIZE = (224, 224)
+
+BEST_MODEL_PATH = MODEL_DIR / "lemon_quality_best.keras"
+FINAL_MODEL_PATH = MODEL_DIR / "lemon_quality_final.keras"
+CLASS_INDEX_PATH = MODEL_DIR / "class_indices.json"

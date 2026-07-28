@@ -16,7 +16,11 @@ def health_check():
     return {
         "status": "healthy",
         "database": "connected",
-        "model": "not_loaded",
+        "model": (
+            "loaded"
+            if PredictionService.MODEL_LOADED
+            else "not_loaded"
+        ),
         "version": "1.0.0",
         "service": "Lemon Freshness Backend API"
     }
